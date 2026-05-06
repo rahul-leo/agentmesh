@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --color-ink: #14211f;
+  --color-muted: #68736c;
+  --color-paper: #f7f0dd;
+  --color-leaf: #1c6e5d;
+  --color-lime: #c9f562;
+  --color-sky: #b7e2ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-ink);
+  background:
+    radial-gradient(circle at 0 0, rgb(201 245 98 / 58%), transparent 31rem),
+    radial-gradient(circle at 100% 88%, rgb(183 226 255 / 82%), transparent 29rem),
+    linear-gradient(135deg, #fff9df 0%, #f7f0dd 58%, #f5ead0 100%);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 16% 18%, rgb(201 245 98 / 34%), transparent 24rem),
+    radial-gradient(circle at 86% 76%, rgb(183 226 255 / 44%), transparent 28rem);
+  animation: drift 16s ease-in-out infinite alternate;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.hero-title {
+  text-wrap: balance;
+  overflow-wrap: normal;
+}
+
+.hero-title span {
+  display: block;
+  max-width: 100%;
+}
+
+.hero-copy {
+  text-wrap: pretty;
+}
+
+.ambient-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.ambient-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 0%, rgb(255 255 255 / 42%) 48%, transparent 58%);
+  transform: translateX(-120%);
+  animation: sheen 5.5s ease-in-out infinite;
+}
+
+.bot-breathe {
+  animation: bot-breathe 3.4s ease-in-out infinite;
+}
+
+.live-dot {
+  animation: live-pulse 1.4s ease-in-out infinite;
+}
+
+.float-soft {
+  animation: float-soft 5s ease-in-out infinite;
+}
+
+.progress-line {
+  background: linear-gradient(90deg, transparent, #14211f, transparent);
+  animation: progress-sweep 1.2s ease-in-out infinite;
+}
+
+.chat-shell {
+  position: relative;
+  min-height: 168px;
+  border: 1px solid rgb(20 33 31 / 10%);
+  border-radius: 22px;
+  background: rgb(255 255 255 / 68%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 70%);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.chat-shell-active {
+  border-color: var(--color-leaf);
+  background: rgb(255 255 255 / 88%);
+  box-shadow:
+    0 0 0 4px rgb(201 245 98 / 28%),
+    inset 0 1px 0 rgb(255 255 255 / 80%);
+  transform: translateY(-1px);
+}
+
+.chat-shell-drag {
+  border-color: var(--color-leaf);
+  background: rgb(201 245 98 / 18%);
+  box-shadow:
+    0 0 0 4px rgb(201 245 98 / 34%),
+    0 18px 35px rgb(20 33 31 / 10%);
+}
+
+.chat-textarea {
+  display: block;
+  width: 100%;
+  min-height: 168px;
+  max-height: 320px;
+  resize: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--color-ink);
+  line-height: 1.55;
+  padding: 18px 18px 34px;
+  letter-spacing: 0;
+}
+
+.chat-textarea::placeholder {
+  color: rgb(104 115 108 / 70%);
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 2%, 0) scale(1.04);
+  }
+}
+
+@keyframes sheen {
+  0%,
+  58% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes bot-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 14px 35px rgb(20 33 31 / 12%);
+  }
+  50% {
+    transform: translateY(-7px) scale(1.04);
+    box-shadow: 0 24px 48px rgb(20 33 31 / 18%);
+  }
+}
+
+@keyframes live-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes progress-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
