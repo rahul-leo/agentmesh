@@ -1,0 +1,11 @@
+{
+  "name": "agentmesh",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "npm --prefix frontend ci && npm --prefix frontend run build",
+    "dev": "npm --prefix frontend run dev",
+    "preview": "npm --prefix frontend run preview",
+    "test": "npm --prefix frontend run test"
+  }
+}
