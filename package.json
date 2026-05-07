@@ -1,0 +1,14 @@
+{
+  "name": "agentmesh",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace agentmesh-dashboard",
+    "dev": "npm run dev --workspace agentmesh-dashboard",
+    "preview": "npm run preview --workspace agentmesh-dashboard",
+    "test": "npm run test --workspace agentmesh-dashboard"
+  }
+}

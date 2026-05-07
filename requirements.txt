@@ -3,6 +3,3 @@ uvicorn[standard]
 pydantic
 python-dotenv
 httpx
-pytest
-rich
-streamlit

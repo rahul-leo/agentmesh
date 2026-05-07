@@ -33,6 +33,13 @@ npm run dev
 
 Open `http://127.0.0.1:5173`. The API docs are available at `http://127.0.0.1:8000/docs`.
 
+Optional Streamlit dashboard:
+
+```powershell
+pip install -r requirements-streamlit.txt
+streamlit run streamlit_app.py
+```
+
 ## Public Configuration
 
 Copy `.env.example` to `.env` if you want to customize settings:
@@ -46,6 +53,7 @@ By default, AgentMesh uses in-memory storage so every public clone runs without 
 ## Local CI
 
 ```powershell
+pip install -r requirements-dev.txt
 .\scripts\ci.ps1
 ```
 

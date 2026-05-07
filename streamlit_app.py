@@ -1,28 +1,33 @@
-import streamlit as st
-import requests
-import pandas as pd
+import os
 from datetime import datetime
 
-st.set_page_config(page_title="AgentMesh Dashboard", page_icon="🤖", layout="wide")
+import requests
+import streamlit as st
 
-st.title("🤖 AgentMesh Streamlit Dashboard")
+
+st.set_page_config(page_title="AgentMesh Dashboard", layout="wide")
+
+st.title("AgentMesh Streamlit Dashboard")
 st.markdown("---")
 
-API_BASE = "http://127.0.0.1:8000"
+API_BASE = os.getenv("AGENTMESH_API_BASE", "http://127.0.0.1:8000").rstrip("/")
+
 
 def fetch_history():
     try:
-        response = requests.get(f"{API_BASE}/api/runs?limit=10")
+        response = requests.get(f"{API_BASE}/api/runs?limit=10", timeout=5)
         if response.status_code == 200:
             return response.json().get("runs", [])
-    except:
-        st.error("Could not connect to AgentMesh API. Make sure the backend is running.")
+        st.error(f"AgentMesh API returned HTTP {response.status_code}.")
+    except requests.RequestException:
+        st.error(f"Could not connect to AgentMesh API at {API_BASE}. Make sure the backend is running.")
     return []
+
 
 col1, col2 = st.columns([1, 1])
 
 with col1:
-    st.subheader("🚀 Recent Runs")
+    st.subheader("Recent Runs")
     runs = fetch_history()
     if runs:
         for run in runs:
@@ -32,7 +37,7 @@ with col1:
         st.write("No runs found.")
 
 with col2:
-    st.subheader("⚙️ System Status")
+    st.subheader("System Status")
     st.info("AgentMesh Backend: Connected" if runs else "AgentMesh Backend: Disconnected")
     st.write(f"Current Time: {datetime.now().strftime('%H:%M:%S')}")
 

@@ -1,0 +1,14 @@
+.venv/
+node_modules/
+frontend/node_modules/
+frontend/dist/
+.pytest_cache/
+__pycache__/
+**/__pycache__/
+*.pyc
+backend.log
+AgentMesh_Presentation.pptx
+assets/
+streamlit_app.py
+requirements-streamlit.txt
+requirements-dev.txt
